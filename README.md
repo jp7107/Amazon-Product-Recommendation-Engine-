@@ -61,46 +61,32 @@ Key findings from visual and statistical analysis of the dataset:
 ## ⚙️ Data Processing Pipeline
 
 ```mermaid
-## ⚙️ End-to-End Recommendation Pipeline
+flowchart LR
 
-```mermaid
-flowchart TD
+A[Raw Reviews Data]
+--> B[Data Preprocessing]
 
-A[📦 Raw Amazon Reviews Dataset<br>7.8M Records]
+B --> C[User Filtering]
+B --> D[Product Filtering]
 
---> B[🧹 Data Cleaning<br>Remove Timestamp & Unnecessary Features]
+C --> E[User-Item Interaction Matrix]
+D --> E
 
---> C[👥 User Activity Analysis<br>Count User Interactions]
+E --> F[Feature Representation]
 
---> D[🎯 Active User Filtering<br>Users with ≥ 50 Ratings]
+F --> G[Collaborative Filtering]
 
---> E[📊 Product Popularity Analysis<br>Count Product Ratings]
+G --> H[SVD]
+G --> I[KNNBasic]
+G --> J[KNNMeans]
 
---> F[🏷️ Product Filtering<br>Products with ≥ 5 Ratings]
+H --> K[Model Evaluation]
+I --> K
+J --> K
 
---> G[🔄 Dense User-Item Matrix Creation]
+K --> L[Best Recommender]
 
---> H[📚 Convert to Surprise Dataset]
-
---> I[✂️ Train-Test Split<br>75% Train | 25% Test]
-
---> J[🤖 Collaborative Filtering Models]
-
-J --> K[KNN Basic]
-J --> L[KNN With Means]
-J --> M[Matrix Factorization (SVD)]
-
-K --> N[📈 Model Evaluation]
-L --> N
-M --> N
-
-N --> O[RMSE Comparison]
-
-O --> P[🏆 Best Model Selection]
-
-P --> Q[🎁 Top-N Product Recommendations]
-
-Q --> R[📊 Personalized User Experience]
+L --> M[Personalized Product Recommendations]
 ```
 
 ---
